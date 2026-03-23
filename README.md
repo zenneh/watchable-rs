@@ -26,7 +26,7 @@ A `Watchable` wraps a value that may change over time, allowing observers to be 
 ## Usage
 
 ```rust
-use watchable::{Watchable, Watcher};
+use watchable_rs::{Watchable, Watcher};
 
 let watchable = Watchable::new(42);
 let mut watcher = watchable.watch();
@@ -43,7 +43,7 @@ assert_eq!(watcher.get(), 100);
 The `Watchable` derive macro generates per-field observable wrappers:
 
 ```rust
-use watchable::Watchable;
+use watchable_rs::Watchable;
 
 #[derive(Clone, Watchable)]
 struct Config {
@@ -63,7 +63,7 @@ assert!(watcher.has_changed());
 ### Async
 
 ```rust
-use watchable::{Watchable, Watcher};
+use watchable_rs::{Watchable, Watcher};
 
 let w = Watchable::new(0);
 let mut watcher = w.watch();
@@ -79,7 +79,7 @@ w.set(42);
 ### Combinators
 
 ```rust
-use watchable::{Watchable, Watcher};
+use watchable_rs::{Watchable, Watcher};
 
 let a = Watchable::new(1);
 let b = Watchable::new("hello".to_string());

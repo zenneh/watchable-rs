@@ -12,7 +12,7 @@ use syn::{parse_macro_input, Data, DeriveInput, Fields};
 /// # Example
 ///
 /// ```ignore
-/// use watchable::Watchable;
+/// use watchable_rs::Watchable;
 ///
 /// #[derive(Clone, Watchable)]
 /// struct Config {
@@ -89,7 +89,7 @@ fn impl_watchable(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStream> 
         /// Observable wrapper where each field is independently watchable.
         #vis struct #watchable_name #generics #where_clause {
             #(
-                #field_vis #field_names: watchable::Watchable<#field_types>,
+                #field_vis #field_names: watchable_rs::Watchable<#field_types>,
             )*
         }
 
@@ -101,7 +101,7 @@ fn impl_watchable(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStream> 
             pub fn new(value: #name #ty_generics) -> Self {
                 Self {
                     #(
-                        #field_names: watchable::Watchable::new(value.#field_names),
+                        #field_names: watchable_rs::Watchable::new(value.#field_names),
                     )*
                 }
             }
@@ -154,7 +154,7 @@ fn impl_watchable(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStream> 
         /// Watcher that observes each field of the original struct independently.
         #vis struct #watcher_name #generics #where_clause {
             #(
-                #field_vis #field_names: watchable::Direct<#field_types>,
+                #field_vis #field_names: watchable_rs::Direct<#field_types>,
             )*
         }
 
@@ -166,7 +166,7 @@ fn impl_watchable(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStream> 
             pub fn get(&mut self) -> #name #ty_generics {
                 #name {
                     #(
-                        #field_names: watchable::Watcher::get(&mut self.#field_names),
+                        #field_names: watchable_rs::Watcher::get(&mut self.#field_names),
                     )*
                 }
             }
@@ -175,7 +175,7 @@ fn impl_watchable(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStream> 
             pub fn peek(&self) -> #name #ty_generics {
                 #name {
                     #(
-                        #field_names: watchable::Watcher::peek(&self.#field_names).clone(),
+                        #field_names: watchable_rs::Watcher::peek(&self.#field_names).clone(),
                     )*
                 }
             }
@@ -184,19 +184,19 @@ fn impl_watchable(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStream> 
             pub fn update(&mut self) -> bool {
                 let mut changed = false;
                 #(
-                    changed |= watchable::Watcher::update(&mut self.#field_names);
+                    changed |= watchable_rs::Watcher::update(&mut self.#field_names);
                 )*
                 changed
             }
 
             /// Returns `true` if any field has a pending change.
             pub fn has_changed(&self) -> bool {
-                false #(|| watchable::Watcher::has_changed(&self.#field_names))*
+                false #(|| watchable_rs::Watcher::has_changed(&self.#field_names))*
             }
 
             /// Returns `true` if all fields are still connected.
             pub fn is_connected(&self) -> bool {
-                true #(&& watchable::Watcher::is_connected(&self.#field_names))*
+                true #(&& watchable_rs::Watcher::is_connected(&self.#field_names))*
             }
 
             #(
@@ -204,7 +204,7 @@ fn impl_watchable(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStream> 
                 #[doc = stringify!(#field_names)]
                 /// ` field.
                 pub fn #field_names(&self) -> &#field_types {
-                    watchable::Watcher::peek(&self.#field_names)
+                    watchable_rs::Watcher::peek(&self.#field_names)
                 }
             )*
         }

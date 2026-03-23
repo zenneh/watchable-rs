@@ -1,6 +1,6 @@
 //! WatchableMap and WatchableVec with change tracking.
 
-use watchable::{WatchableMap, WatchableVec, WatchableVecLite};
+use watchable_rs::{WatchableMap, WatchableVec, WatchableVecLite};
 
 fn main() {
     // -- WatchableMap: observable HashMap --

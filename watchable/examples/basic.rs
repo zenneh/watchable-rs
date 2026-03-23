@@ -1,6 +1,6 @@
 //! Basic usage of Watchable types.
 
-use watchable::{Watchable, WatchableFast, WatchableLite, Watcher};
+use watchable_rs::{Watchable, WatchableFast, WatchableLite, Watcher};
 
 fn main() {
     // -- Watchable<T>: general purpose --

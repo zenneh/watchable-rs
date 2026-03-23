@@ -1,6 +1,6 @@
 //! Async watching with tokio.
 
-use watchable::{Watchable, Watcher};
+use watchable_rs::{Watchable, Watcher};
 
 #[tokio::main]
 async fn main() {

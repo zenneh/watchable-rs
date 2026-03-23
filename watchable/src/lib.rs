@@ -22,7 +22,7 @@
 //! # Example
 //!
 //! ```
-//! use watchable::{Watchable, Watcher};
+//! use watchable_rs::{Watchable, Watcher};
 //!
 //! let watchable = Watchable::new(42);
 //! let mut watcher = watchable.watch();
@@ -50,7 +50,7 @@ use crossbeam::queue::ArrayQueue;
 use parking_lot::{MappedRwLockReadGuard, Mutex, RwLock, RwLockReadGuard};
 
 #[cfg(feature = "derive")]
-pub use watchable_derive::Watchable;
+pub use watchable_rs_derive::Watchable;
 
 // ============================================================================
 // Error Type

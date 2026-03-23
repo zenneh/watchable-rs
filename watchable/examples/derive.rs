@@ -1,6 +1,6 @@
 //! Derive macro: per-field observable structs.
 
-use watchable::{Watchable, Watcher};
+use watchable_rs::{Watchable, Watcher};
 
 #[derive(Clone, Debug, Watchable)]
 pub struct AppConfig {

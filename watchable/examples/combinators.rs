@@ -1,6 +1,6 @@
 //! Watcher combinators: map, and, join.
 
-use watchable::{Join, Watchable, Watcher};
+use watchable_rs::{Join, Watchable, Watcher};
 
 fn main() {
     // -- map: transform watched values --
