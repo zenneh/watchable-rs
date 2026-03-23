@@ -1,0 +1,15 @@
+[package]
+name = "watchable-derive"
+version = "0.1.0"
+edition = "2021"
+description = "Derive macros for the watchable crate"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/zenneh/watchable-rs"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1"
+quote = "1"
+syn = { version = "2", features = ["full"] }

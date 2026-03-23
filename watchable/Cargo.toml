@@ -1,0 +1,22 @@
+[package]
+name = "watchable"
+version = "0.1.0"
+edition = "2021"
+description = "Observable values with change tracking and async support"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/zenneh/watchable-rs"
+keywords = ["reactive", "observable", "watch", "async", "concurrency"]
+categories = ["concurrency", "asynchronous"]
+
+[dependencies]
+crossbeam = "0.8"
+futures-lite = "2"
+parking_lot = "0.12"
+watchable-derive = { path = "../watchable-derive", version = "0.1.0", optional = true }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
+
+[features]
+default = ["derive"]
+derive = ["dep:watchable-derive"]

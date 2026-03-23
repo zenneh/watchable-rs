@@ -1,0 +1,3 @@
+[workspace]
+members = ["watchable", "watchable-derive"]
+resolver = "2"
